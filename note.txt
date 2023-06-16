@@ -1,0 +1,23 @@
+=>How to run the program,
+
+GitHub link = 'https://github.com/rajon38/Simple-E-Com.git'
+
+1. Clone this repository code.
+
+2. Run the project in VSCode/WebStrom platform,
+
+3. To run the Backend side, Open a terminal and type "cd server"
+
+4. Then type "npm i" to install necessary packages.
+
+5. Then type "npm run dev", the server will run into 8080 port.
+
+6. To run the Backend side, Open a terminal and type "cd client"
+
+7. Then type "npm i" to install necessary packages.
+
+8. Then type "npm run dev", the server will run into 3000 port.
+
+Postman link = 'https://documenter.getpostman.com/view/24585156/2s93shzV1T'
+
+Live Link =
