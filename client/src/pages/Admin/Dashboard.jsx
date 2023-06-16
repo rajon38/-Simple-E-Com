@@ -1,14 +1,14 @@
 import React from 'react';
-import UserMenu from "../../Components/UserMenu";
+import AdminMenu from "../../Components/AdminMenu";
 import {useAuth} from "../../context/auth";
 
-const Dashboard = () => {
+const AdminDashboard = () => {
     // context
     const [auth, setAuth] = useAuth();
     return (
-        <div className='container m-10'>
-            <div className="w-1/6">
-                <UserMenu/>
+        <div className="container m-10">
+            <div className="w-1/5">
+                <AdminMenu/>
             </div>
             <div className='w-5/6'>
                 <div className="flex flex-col text-center w-full mb-20 ml-20 space-y-2">
@@ -17,8 +17,9 @@ const Dashboard = () => {
                     <h1 className="sm:text-3xl text-2xl font-medium title-font text-gray-900">{auth?.user?.email}</h1>
                 </div>
             </div>
+            
         </div>
     );
 };
 
-export default Dashboard;
+export default AdminDashboard;
