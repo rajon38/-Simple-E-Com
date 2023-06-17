@@ -3,7 +3,7 @@ const { readdirSync } = require("fs");
 const path = require("path")
 const express = require("express");
 const app = express();
-require("dotenv").config();
+const mongoSanitize =require('express-mongo-sanitize');
 const helmet = require("helmet");
 const morgan = require("morgan");
 const cors = require("cors");
@@ -12,6 +12,7 @@ const rateLimit = require('express-rate-limit');
 
 //middleware
 app.use(cors());
+app.use(mongoSanitize());
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -22,13 +23,15 @@ const limiter = rateLimit({ windowMs: 15 * 60 * 1000, max: 3000 });
 app.use(limiter);
 
 //mongodb connection
-let Option = { autoIndex: true }
-mongoose.set('strictQuery', true)
-    .connect(process.env.URI, Option)
-    .then(() => {
-        console.log('connected to DB');
+let URI="mongodb+srv://<username>:<password>@cluster0.aw6azwi.mongodb.net/ostad-com?retryWrites=true&w=majority";
+let OPTION={user:'rashedul',pass:'170174Rajon',autoIndex:true}
+mongoose
+    .set('strictQuery',true)
+    .connect(URI,OPTION)
+    .then(()=>{
+        console.log('Connected to DB')
     })
-    .catch((err) => {
+    .catch((err)=>{
         console.log(err.message)
     });
 
@@ -40,4 +43,10 @@ app.use("*", (req, res) => {
     res.status(404).json({ status: "failed", data: "Not Found" })
 });
 
+// Add React Front End Routing
+
+app.use(express.static('client/build'));
+app.get('*',function (req,res) {
+    res.sendFile(path.resolve(__dirname,'client','build','index.html'))
+})
 module.exports = app;

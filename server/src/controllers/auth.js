@@ -1,10 +1,9 @@
 const User =require("../models/user.js");
 const { hashPassword, comparePassword } =require("../helpers/auth.js");
 const jwt =require("jsonwebtoken");
-require("dotenv").config();
 const Order =require("../models/order.js");
 
-
+const JWT_SECRET='ajkdsvnosadvnJHDSVBSImjgcjytdkyt'
 
 exports.register = async (req, res) => {
   try {
@@ -33,8 +32,6 @@ exports.register = async (req, res) => {
       email,
       password: hashedPassword,
     }).save();
-    // 6. create signed jwt
-    // 7. send response
     res.json({
       user: {
         name: user.name,
@@ -70,7 +67,7 @@ exports.login = async (req, res) => {
       return res.json({ error: "Invalid email or password" });
     }
     // 5. create signed jwt
-    const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
+    const token = jwt.sign({ _id: user._id },JWT_SECRET, {
       expiresIn: "7d",
     });
     // 7. send response

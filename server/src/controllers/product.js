@@ -2,18 +2,23 @@ const Product =require("../models/product.js");
 const fs =require("fs");
 const slugify =require("slugify");
 const braintree =require("braintree");
-require("dotenv").config();
 const Order =require("../models/order.js");
 const sgMail =require("@sendgrid/mail");
+const SENDGRID_KEY='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'
+const BRAINTREE_MERCHANT_ID='vj522fwd6f6rmsfr'
+const BRAINTREE_PUBLIC_KEY='8ncwvtcbnrmz8pmj'
+const BRAINTREE_PRIVATE_KEY='68d1af4a327b008de76ea6bb0a66124a'
+const EMAIL_FROM='rashedul.rajon@gmail.com'
+const CLIENT_URL='http://localhost:3000'
 
 
-sgMail.setApiKey(process.env.SENDGRID_KEY);
+sgMail.setApiKey(SENDGRID_KEY);
 
 const gateway = new braintree.BraintreeGateway({
   environment: braintree.Environment.Sandbox,
-  merchantId: process.env.BRAINTREE_MERCHANT_ID,
-  publicKey: process.env.BRAINTREE_PUBLIC_KEY,
-  privateKey: process.env.BRAINTREE_PRIVATE_KEY,
+  merchantId: BRAINTREE_MERCHANT_ID,
+  publicKey: BRAINTREE_PUBLIC_KEY,
+  privateKey: BRAINTREE_PRIVATE_KEY,
 });
 
 exports.create = async (req, res) => {
@@ -113,15 +118,11 @@ exports.remove = async (req, res) => {
 
 exports.update = async (req, res) => {
   try {
-    // console.log(req.fields);
-    // console.log(req.files);
+
     const { name, description, price, category, quantity, shipping } =
       req.fields;
     const { photo } = req.files;
-    // console.log(req.params.productId)
 
-    // option1
-    // validation
     switch (true) {
       case !name?.trim():
       return  res.json({ error: "Name is required" });
@@ -263,7 +264,6 @@ exports.processPayment = async (req, res) => {
     cart.map((i) => {
       total += i.price;
     });
-    // console.log("total => ", total);
 
     let newTransaction = gateway.transaction.sale(
       {
@@ -275,7 +275,6 @@ exports.processPayment = async (req, res) => {
       },
       function (error, result) {
         if (result) {
-          // res.send(result);
           // create order
           const order = new Order({
             products: cart,
@@ -338,12 +337,12 @@ exports.orderStatus = async (req, res) => {
 
     // prepare email
     const emailData = {
-      from: process.env.EMAIL_FROM,
+      from: EMAIL_FROM,
       to: order.buyer.email,
       subject: "Order status",
       html: `
         <h1>Hi ${order.buyer.name}, Your order's status is: <span style="color:red;">${order.status}</span></h1>
-        <p>Visit <a href="${process.env.CLIENT_URL}/dashboard/user/orders">your dashboard</a> for more details</p>
+        <p>Visit <a href="${CLIENT_URL}/dashboard/user/orders">your dashboard</a> for more details</p>
       `,
     };
 
