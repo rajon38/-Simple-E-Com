@@ -10,13 +10,13 @@ const CategoryForm=({
       <form onSubmit={handleSubmit}>
         <input
           type="text"
-          className="form-control p-3"
+          className="form-control p-3 rounded bg-lime-50"
           placeholder="Write category name"
           value={value}
           onChange={(e) => setValue(e.target.value)}
         />
-        <div className="d-flex justify-content-between">
-          <button className="btn btn-primary mt-3">{buttonText}</button>
+        <div className="d-flex justify-content-between space-x-2">
+          <button className="btn btn-warning mt-3">{buttonText}</button>
           {handleDelete && (
             <button onClick={handleDelete} className="btn btn-danger mt-3">
               Delete

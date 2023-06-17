@@ -7,7 +7,7 @@ const ProductCard = ({p}) => {
     // hooks
     const navigate = useNavigate();
     return (
-        <div className="card w-96 glass">
+        <div className="card w-96 bg-white border border-gray-200">
             <Badge.Ribbon text={`${p?.sold} sold`} color="red">
                 <Badge.Ribbon
                     text={`${p?.quantity >= 1

@@ -69,8 +69,8 @@ const Shop = () => {
                 <h1 className="sm:text-3xl text-2xl font-medium title-font text-gray-900">Happy Shopping</h1>
             </div>
 
-            <div className="inline-flex justify-between">
-                <div className="form-control w-3/8">
+            <div className="flex flex-inline justify-between">
+                <div className="form-control w-1/6">
                     <h2 className="p-3 mt-2 mb-2 h4 text-center capitalize space-x-2">
                         Filter by Price
                     </h2>
@@ -91,15 +91,15 @@ const Shop = () => {
                         </button>
                     </div>
                 </div>
-                <div className="body-font form-control w-5/8">
-                    <h2 className="sm:text-3xl text-2xl font-medium title-font text-gray-900 space-y-2">
+                <div className="body-font form-control w-5/6">
+                    <h2 className="sm:text-3xl text-2xl font-medium title-font text-gray-900">
                         {products?.length} Products
                     </h2>
                     <div
-                        className=" overflow-scroll grid grid-cols-2"
+                        className=" overflow-scroll flex"
                     >
                         {products?.map((p) => (
-                            <div className=" lg:w-1/6 md:w-1/2 m-3 p-5 w-full" key={p._id}>
+                            <div className=" lg:w-1/2 md:w-1/2 m-3 p-5 w-full" key={p._id}>
                                 <ProductCard p={p} />
                             </div>
                         ))}

@@ -22,15 +22,17 @@ import AdminProduct from "./pages/Admin/product";
 import AdminProducts from "./pages/Admin/products";
 import AdminProductUpdate from "./pages/Admin/ProductUpdate";
 import AdminOrders from "./pages/Admin/Orders";
+import CategoryList from "./pages/CategoryList";
 
 const App = () => {
     return (
         <BrowserRouter>
             <Navbar />
-            <Toaster position="top-right" />
+            <Toaster position="top-center" />
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/shop" element={<Shop />} />
+                <Route path="/categories" element={<CategoryList />} />
                 <Route path="/category/:slug" element={<CategoryView />} />
                 <Route path="/cart" element={<Cart />} />
                 <Route path="/product/:slug" element={<ProductView />} />

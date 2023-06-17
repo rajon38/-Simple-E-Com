@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import LoadingGIF from "../../assets/images/loading.gif";
 
 const Loading = ({ path = "login" })=> {
   // state
@@ -24,12 +23,8 @@ const Loading = ({ path = "login" })=> {
   }, [count]);
 
   return (
-    <div
-      className="d-flex justify-content-center align-items-center"
-      style={{ height: "90vh" }}
-    >
-      <img src={LoadingGIF} alt="Loading" style={{ width: "400px" }} />
-    </div>
+      <div className="w-12 h-12 rounded-full animate-spin
+                    border-8 border-solid border-purple-500 border-t-transparent shadow-md"></div>
   );
 }
 

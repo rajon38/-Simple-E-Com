@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {useAuth} from "../../context/auth";
-import {useLocation, useNavigate} from "react-router-dom";
+import {Link, useLocation, useNavigate} from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
 
@@ -64,6 +64,9 @@ const LogIn = () => {
                                 <div className="relative">
                                     <button className="bg-yellow-500 hover:bg-yellow-600 text-white rounded-md px-2 py-1 "type="submit" >Submit</button>
                                 </div>
+                                    <div className="relative">
+                                        <p>Have No Account?.<Link className="font-medium text-yellow-500 hover:text-yellow-600" to="/register">Register</Link></p>
+                                    </div>
                                 </form>
                             </div>
                         </div>

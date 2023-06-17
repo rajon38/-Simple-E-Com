@@ -47,11 +47,11 @@ const UserProfile = () => {
         }
     };
     return (
-        <div className='container m-10'>
-            <div className="grid grid-cols-3">
+        <div className='container m-10 flex flex-inline space-x-8'>
+            <div className="w-2/6">
                 <UserMenu/>
             </div>
-            <div className=' grid grid-cols-3'>
+            <div className=' w-4/6'>
                 <div className="flex flex-col max-w-lg text-center w-full mb-20 ml-20 ">
                     <h1 className="sm:text-3xl text-2xl font-medium title-font text-gray-900">Profile</h1>
                 </div>

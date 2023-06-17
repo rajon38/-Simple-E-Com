@@ -77,7 +77,7 @@ const Navbar = () => {
                     <>
 
                 <Link
-                    className="inline-flex items-center bg-indigo-300 border-0 py-1 px-3 focus:outline-none hover:bg-indigo-400 rounded text-white mt-4 md:mt-0" to="/login">LogIn
+                    className="btn inline-flex items-center m-0.5 focus:outline-none" to="/login">LogIn
                 </Link>
                     </>
                     ):(

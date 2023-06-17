@@ -23,18 +23,18 @@ const UserOrders = () => {
         }
     };
     return (
-        <div className="container m-10">
-            <div className=" grid grid-cols-3">
+        <div className="container m-10 flex flex-inline space-x-10">
+            <div className="w-1/6">
                 <UserMenu/>
             </div>
-            <div className=" grid grid-cols-2 mr-[200px]">
-                <div className="flex flex-col max-w-lg text-center w-full mb-20 ml-20 ">
+            <div className=" w-5/6">
+                <div className="flex flex-col max-w-lg text-center w-full mb-20 ">
                     <h1 className="sm:text-3xl text-2xl font-medium title-font text-gray-900">Orders</h1>
                 </div>
                 {orders?.map((o, i) => {
                     return (
                         <div
-                            key={o._id} className="border shadow-lg bg-lime-50 rounded w-full">
+                            key={o._id} className="border shadow-lg bg-base-200 rounded w-full">
                             <table className="table">
                                 <thead>
                                 <tr>
