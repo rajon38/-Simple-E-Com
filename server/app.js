@@ -36,7 +36,7 @@ mongoose
     });
 
 //routing implement
-readdirSync("./src/Routes").map(r => app.use("/api/v1", require(`./src/Routes/${r}`)));
+readdirSync("./src/routes").map(r => app.use("/api/v1", require(`./src/routes/${r}`)));
 
 //undefined route implement
 app.use("*", (req, res) => {

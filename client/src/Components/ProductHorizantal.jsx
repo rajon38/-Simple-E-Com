@@ -1,6 +1,7 @@
 import React from 'react';
 import {useCart} from "../context/cart";
 import moment from "moment";
+import {BaseURL} from "../context/BaseURL";
 
 const ProductHorizantal = ({p, remove=true}) => {
     // context
@@ -16,7 +17,7 @@ const ProductHorizantal = ({p, remove=true}) => {
     return (
         <div className="justify-between mb-6 rounded-lg bg-white p-6 shadow-md sm:flex sm:justify-start">
             <img
-                src={`${process.env.REACT_APP_API}/product/photo/${p._id}`}
+                src={`${BaseURL}/product/photo/${p._id}`}
                 alt={p.name} className="w-full rounded-lg sm:w-40"/>
             <div className="sm:ml-4 sm:flex sm:w-full sm:justify-between">
                 <div className="mt-5 sm:mt-0 space-y-4">

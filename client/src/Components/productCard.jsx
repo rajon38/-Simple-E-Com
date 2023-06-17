@@ -2,6 +2,7 @@ import { Badge } from "antd";
 import React from 'react';
 import {useCart} from "../context/cart";
 import {useNavigate} from "react-router-dom";
+import {BaseURL} from "../context/BaseURL";
 
 const ProductCard = ({p}) => {
     // hooks
@@ -17,7 +18,7 @@ const ProductCard = ({p}) => {
                     placement="start"
                     color="green"
                 >
-            <a className="block relative h-48 rounded overflow-hidden"><img className="object-contain object-center w-full h-full block" src={`${process.env.REACT_APP_API}/product/photo/${p._id}`} alt={p.name}/></a>
+            <a className="block relative h-48 rounded overflow-hidden"><img className="object-contain object-center w-full h-full block" src={`${BaseURL}/product/photo/${p._id}`} alt={p.name}/></a>
                 </Badge.Ribbon>
             </Badge.Ribbon>
             <div className="card-body">

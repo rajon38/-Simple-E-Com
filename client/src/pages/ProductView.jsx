@@ -7,6 +7,7 @@ import {FaCheck, FaRegClock, FaRocket, FaTimes, FaWarehouse} from "react-icons/f
 import moment from "moment";
 import toast from "react-hot-toast";
 import ProductCard from "../Components/productCard";
+import {BaseURL} from "../context/BaseURL";
 
 const ProductView = () => {
     const [cart, setCart] = useCart();
@@ -54,7 +55,7 @@ const ProductView = () => {
                             color="green"
                         >
                     <img alt={product.name} className=" w-full lg:h-auto max-h-[600px] h-64 object-cover object-center rounded"
-                         src={`${process.env.REACT_APP_API}/product/photo/${product._id}`}/>
+                         src={`${BaseURL}/product/photo/${product._id}`}/>
                         </Badge.Ribbon>
                     </Badge.Ribbon>
                         <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">

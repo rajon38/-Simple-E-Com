@@ -5,6 +5,7 @@ import axios from "axios";
 import {useNavigate, useParams} from "react-router-dom";
 import {useAuth} from "../../context/auth";
 import {Select} from "antd";
+import {BaseURL} from "../../context/BaseURL";
 const {Option} = Select
 
 const AdminProductUpdate = () => {
@@ -119,7 +120,7 @@ const AdminProductUpdate = () => {
                     ) : (
                         <div className="text-center">
                             <img
-                                src={`${process.env.REACT_APP_API
+                                src={`${BaseURL
                                 }/product/photo/${id}`}
                                 alt="product"
                                 className="w-full rounded-lg sm:w-40"
