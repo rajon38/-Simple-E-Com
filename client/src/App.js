@@ -23,6 +23,7 @@ import AdminProducts from "./pages/Admin/products";
 import AdminProductUpdate from "./pages/Admin/ProductUpdate";
 import AdminOrders from "./pages/Admin/Orders";
 import CategoryList from "./pages/CategoryList";
+import NotFound from "./pages/NotFound";
 
 const App = () => {
     return (
@@ -56,6 +57,7 @@ const App = () => {
                     />
                     <Route path="admin/orders" element={<AdminOrders />} />
                 </Route>
+                <Route path="*" element={<NotFound/>}></Route>
             </Routes>
             <Footer/>
         </BrowserRouter>
