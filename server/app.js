@@ -63,7 +63,7 @@ readdirSync("./src/routes").map(r=>app.use("/api/v1", require(`./src/routes/${r}
 
 // Add React Front End Routing
 app.get('*',function (req,res) {
-    res.sendFile(path.resolve(__dirname,'client','build','index.html'))
+    res.sendFile(path.resolve(__dirname,'..','client','build','index.html'))
 })
 
 

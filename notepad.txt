@@ -1,3 +1,9 @@
+==>admin- email- admin@gmail.com
+          pass- 123456
+
+   demo user- email- rajon05@gmail.com
+              pass- 1234567
+
 =>How to run the program,
 
 GitHub link = 'https://github.com/rajon38/Simple-E-Com.git'
@@ -20,4 +26,4 @@ GitHub link = 'https://github.com/rajon38/Simple-E-Com.git'
 
 Postman link = 'https://documenter.getpostman.com/view/24585156/2s93shzV1T'
 
-Live Link =
+Live Link = 'https://sim-e-com.onrender.com/'
