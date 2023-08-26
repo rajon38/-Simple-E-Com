@@ -17,12 +17,10 @@ const xss =require('xss-clean');
 const hpp =require('hpp');
 const cors =require('cors');
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
 
 //Database lib import
 const mongoose = require('mongoose');
 app.use(mongoSanitize());
-app.use(express.static('client/build'));
 const {readdirSync} = require("fs");
 const path = require("path");
 
@@ -39,9 +37,22 @@ app.use(express.urlencoded({limit: '50mb'}));
 //Body Parser Implement
 app.use(bodyParser.json());
 
-//Request Rate Limit
-const limiter = rateLimit({windowMs:15*60*1000, max:3000});
-app.use(limiter);
+// Request Rate Limit
+const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 3000,
+    keyGenerator: (req) => {
+        // Extract IP address from the X-Forwarded-For header safely
+        const forwardedFor = req.headers['x-forwarded-for'];
+        const ipArray = forwardedFor ? forwardedFor.split(/\s*,\s*/) : [];
+        const ipAddress = ipArray.length > 0 ? ipArray[0] : req.connection.remoteAddress;
+        return ipAddress;
+    }
+});
+app.use(limiter)
+
+// Enable trust proxy to correctly identify client IP behind proxies
+app.set('trust proxy', true);
 
 //mongoDB Database Connection
 let URI="mongodb+srv://<username>:<password>@cluster0.aw6azwi.mongodb.net/ostad-com?retryWrites=true&w=majority";
@@ -62,8 +73,15 @@ readdirSync("./src/routes").map(r=>app.use("/api/v1", require(`./src/routes/${r}
 
 
 // Add React Front End Routing
-app.get('*',function (req,res) {
-    res.sendFile(path.resolve(__dirname,'..','client','build','index.html'))
+app.use(express.static(path.join(__dirname, '../client/build')));
+
+// Catch-all route to serve the frontend's index.html
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+});
+
+app.use("*",(req,res)=>{
+    res.status(404).json({status:"fail",data:"Not Found"})
 })
 
 
